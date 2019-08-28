@@ -1,6 +1,11 @@
 'use strict'
 
+const Antl = use('Antl')
 class StoreUser {
+  get validateAll () {
+    return true
+  }
+
   get rules () {
     return {
       first_name: 'required|min:5|max:60',
@@ -11,8 +16,8 @@ class StoreUser {
     }
   }
 
-  get validateAll () {
-    return true
+  get messages () {
+    return Antl.list('validation')
   }
 
   async fails (errorMessages) {
