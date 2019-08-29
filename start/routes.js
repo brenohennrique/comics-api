@@ -10,6 +10,6 @@ Route.post('/authenticate', 'AuthController.authenticate')
 Route.resource('brands', 'BrandController')
      .apiOnly()
      .validator(new Map([
-        [['brands.store'], ['StoreBrand']],
-        [['brands.update'], ['StoreBrand']]
+        [['brands.store'], ['Brand']],
+        [['brands.update'], ['Brand']]
       ]))
