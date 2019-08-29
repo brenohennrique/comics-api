@@ -7,9 +7,12 @@ Route.post('/register', 'AuthController.register')
 
 Route.post('/authenticate', 'AuthController.authenticate')
 
-Route.resource('brands', 'BrandController')
-     .apiOnly()
-     .validator(new Map([
-        [['brands.store'], ['Brand']],
-        [['brands.update'], ['Brand']]
-      ]))
+Route.group(() => {
+  Route.resource('brands', 'BrandController')
+      .apiOnly()
+      .validator(new Map([
+          [['brands.store'], ['Brand']],
+          [['brands.update'], ['Brand']]
+        ]))
+})
+.prefix('api/v1')
