@@ -8,20 +8,20 @@ class BrandController {
    * Show a list of all brands.
    * GET brands
    */
-  async index () {
+  async index ({ transform }) {
     const cachedBrands = await Redis.get('brands')
 
     if (cachedBrands) {
-      console.log('Cache')
       return JSON.parse(cachedBrands)
     }
 
     const brands = await Brand.all()
+    const brandsTransform = await transform.collection(brands, 'BrandTransformer')
 
-    await Redis.set('brands', JSON.stringify(brands))
+    await Redis.set('brands', JSON.stringify(brandsTransform))
     Redis.expire('brands', 20)
-    console.log('db')
-    return brands
+
+    return brandsTransform
   }
 
   /**
