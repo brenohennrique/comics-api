@@ -9,7 +9,7 @@ class StoreUser extends BaseValidator {
       last_name: 'required|min:5|max:60',
       birthday: 'required|date',
       email: 'required|email|unique:users',
-      password: 'required|min:6|max:60'
+      password: 'required|min:6|max:60|confirmed'
     }
   }
 }
