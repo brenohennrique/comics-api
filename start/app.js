@@ -58,15 +58,9 @@ const aliases = {}
 */
 const commands = []
 
-const locales = {
-  loader: 'file',
-  locale: 'pt'
-}
-
 module.exports = {
   providers,
   aceProviders,
   aliases,
-  commands,
-  locales
+  commands
 }
