@@ -1,6 +1,7 @@
 'use strict'
 
 const Brand = use('App/Models/Brand')
+const Redis = use('Redis')
 
 class BrandController {
   /**
@@ -8,8 +9,18 @@ class BrandController {
    * GET brands
    */
   async index () {
+    const cachedBrands = await Redis.get('brands')
+
+    if (cachedBrands) {
+      console.log('Cache')
+      return JSON.parse(cachedBrands)
+    }
+
     const brands = await Brand.all()
 
+    await Redis.set('brands', JSON.stringify(brands))
+    Redis.expire('brands', 20)
+    console.log('db')
     return brands
   }
 
