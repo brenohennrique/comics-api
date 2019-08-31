@@ -2,7 +2,7 @@
 
 const BaseValidator = use('App/Validators/BaseValidator')
 
-class Segment extends BaseValidator {
+class Type extends BaseValidator {
   get rules () {
     return {
       name: 'required|min:4|max:50'
@@ -10,4 +10,4 @@ class Segment extends BaseValidator {
   }
 }
 
-module.exports = Segment
+module.exports = Type
