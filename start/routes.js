@@ -14,5 +14,12 @@ Route.group(() => {
           [['brands.store'], ['Brand']],
           [['brands.update'], ['Brand']]
         ]))
+
+  Route.resource('segments', 'SegmentController')
+        .apiOnly()
+        .validator(new Map([
+            [['segments.store'], ['Segment']],
+            [['segments.update'], ['Segment']]
+          ]))
 })
 .prefix('api/v1')
