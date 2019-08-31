@@ -26,11 +26,10 @@ class SegmentController {
     return segment
   }
 
-  async show ({ params }) {
-    console.log('ola')
+  async show ({ params, transform }) {
     const segment = await Segment.find(params.id)
 
-    return segment
+    return transform.item(segment, 'SegmentTransformer')
   }
 
   async update ({ params, request }) {

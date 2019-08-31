@@ -26,10 +26,10 @@ class BrandController {
     return brand
   }
 
-  async show ({ params }) {
+  async show ({ params, transform }) {
     const brand = await Brand.find(params.id)
 
-    return brand
+    return transform.item(brand, 'BrandTransformer')
   }
 
   async update ({ params, request }) {
